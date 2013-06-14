@@ -14,4 +14,12 @@ feature 'Creating Projects' do
 		title = "TextMate 2 - Projects - Ticketee"
 		find("title").should have_content(title)
 	end
+	
+	scenario "can not create a project without a name" do
+		visit '/'
+		click_link 'New Project'
+		click_button 'Create Project'
+		page.should have_content("Project has not been created.")
+		page.should have_content("Name can't be blank")
+	end
 end
