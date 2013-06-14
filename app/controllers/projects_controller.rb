@@ -5,6 +5,7 @@ class ProjectsController < ApplicationController
 	def new
 		@project = Project.new
 	end
+	
 	def create
 	
 		@project = Project.new(params[:project]) 
@@ -16,8 +17,13 @@ class ProjectsController < ApplicationController
 			render :action => "new"
 		end
 	end
+	
 	def show
 		@project = Project.find(params[:id])
+	end
+	
+	def index
+		@projects = Project.all
 	end
 	
 end
