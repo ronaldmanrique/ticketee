@@ -1,5 +1,9 @@
 require 'spec_helper'
-feature 'Signing up' do
+feature 'Signing in' do
+
+	before do
+		Factory(:user, :email => "ticketee@example.com")
+	end
 	scenario 'Successful sign up' do
 		visit '/'
 		click_link 'Sign up'
@@ -7,6 +11,7 @@ feature 'Signing up' do
 		fill_in "Password", :with => "password"
 		fill_in "Password confirmation", :with => "password"
 		click_button "Sign up"
-		page.should have_content("You have signed up successfully.")
+		message = "Please open the link to activate your account."
+		page.should have_content(message)
 	end
 end
